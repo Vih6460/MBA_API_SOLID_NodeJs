@@ -1,0 +1,32 @@
+{
+  "name": "mba_api_solid_nodejs",
+  "version": "1.0.0",
+  "description": "This project is designed to develop a REST API while applying fundamental software engineering principles such as SOLID, Design Patterns, and RBAC (Role-Based Access Control).",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vih6460/MBA_API_SOLID_NodeJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Vih6460/MBA_API_SOLID_NodeJs/issues"
+  },
+  "homepage": "https://github.com/Vih6460/MBA_API_SOLID_NodeJs#readme",
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "tsup": "^8.3.6",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "fastify": "^5.2.1"
+  }
+}
