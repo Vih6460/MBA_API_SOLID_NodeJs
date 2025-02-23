@@ -9,7 +9,7 @@ describe('Register Use Case', () => {
     const usersRepository = new InMemoryUsersRepository()
     const createUserUseCase = new CreateUserUseCase(usersRepository)
 
-    const { user } = await createUserUseCase.execute({
+    const { user } = await createUserUseCase.tryCreateUser({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -22,7 +22,7 @@ describe('Register Use Case', () => {
     const usersRepository = new InMemoryUsersRepository()
     const createUserUseCase = new CreateUserUseCase(usersRepository)
 
-    const { user } = await createUserUseCase.execute({
+    const { user } = await createUserUseCase.tryCreateUser({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -42,14 +42,14 @@ describe('Register Use Case', () => {
 
     const email = 'johndoe@example.com'
 
-    await createUserUseCase.execute({
+    await createUserUseCase.tryCreateUser({
       name: 'John Doe',
       email,
       password: '123456',
     })
 
     await expect(() =>
-      createUserUseCase.execute({
+      createUserUseCase.tryCreateUser({
         name: 'John Doe',
         email,
         password: '123456',

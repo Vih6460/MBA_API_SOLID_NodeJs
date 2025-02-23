@@ -15,7 +15,7 @@ describe('Authenticate Use Case', () => {
       password_hash: await hash('123456', 6),
     })
 
-    const { user } = await sut.execute({
+    const { user } = await sut.tryLogin({
       email: 'johndoe@example.com',
       password: '123456',
     })
@@ -28,7 +28,7 @@ describe('Authenticate Use Case', () => {
     const sut = new AuthenticateUseCase(usersRepository)
 
     expect(() =>
-      sut.execute({
+      sut.tryLogin({
         email: 'johndoe@example.com',
         password: '123456',
       }),
@@ -46,7 +46,7 @@ describe('Authenticate Use Case', () => {
     })
 
     expect(() =>
-      sut.execute({
+      sut.tryLogin({
         email: 'johndoe@example.com',
         password: '123123',
       }),

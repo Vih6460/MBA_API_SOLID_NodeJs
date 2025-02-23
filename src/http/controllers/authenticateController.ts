@@ -19,7 +19,7 @@ export async function authenticate(
     const usersRepository = new PrismaUsersRepository()
     const authenticateUseCase = new AuthenticateUseCase(usersRepository)
 
-    await authenticateUseCase.execute({
+    await authenticateUseCase.tryLogin({
       email,
       password,
     })

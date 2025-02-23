@@ -17,7 +17,7 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
     const usersRepository = new PrismaUsersRepository()
     const createUserUseCase = new CreateUserUseCase(usersRepository)
 
-    await createUserUseCase.execute({
+    await createUserUseCase.tryCreateUser({
       name,
       email,
       password,
