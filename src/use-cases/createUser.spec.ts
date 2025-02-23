@@ -1,15 +1,20 @@
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
 import { compare } from 'bcryptjs'
-import { expect, describe, it } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { CreateUserUseCase } from './createUser'
 
-describe('Register Use Case', () => {
-  it('should be able to create user', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const createUserUseCase = new CreateUserUseCase(usersRepository)
+let usersRepository: InMemoryUsersRepository
+let sut: CreateUserUseCase
 
-    const { user } = await createUserUseCase.tryCreateUser({
+describe('Register Use Case', () => {
+  beforeEach(() => {
+    usersRepository = new InMemoryUsersRepository()
+    sut = new CreateUserUseCase(usersRepository)
+  })
+
+  it('should be able to create user', async () => {
+    const { user } = await sut.tryCreateUser({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -19,10 +24,7 @@ describe('Register Use Case', () => {
   })
 
   it('should hash user password upon registration', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const createUserUseCase = new CreateUserUseCase(usersRepository)
-
-    const { user } = await createUserUseCase.tryCreateUser({
+    const { user } = await sut.tryCreateUser({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
@@ -37,19 +39,16 @@ describe('Register Use Case', () => {
   })
 
   it('should not be able to create user with same email twice', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const createUserUseCase = new CreateUserUseCase(usersRepository)
-
     const email = 'johndoe@example.com'
 
-    await createUserUseCase.tryCreateUser({
+    await sut.tryCreateUser({
       name: 'John Doe',
       email,
       password: '123456',
     })
 
     await expect(() =>
-      createUserUseCase.tryCreateUser({
+      sut.tryCreateUser({
         name: 'John Doe',
         email,
         password: '123456',
