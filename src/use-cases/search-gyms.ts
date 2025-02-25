@@ -13,7 +13,7 @@ interface SearchGymsUseCaseResponse {
 export class SearchGymsUseCase {
   constructor(private gymsRepository: GymsRepository) {}
 
-  async execute({
+  async tryFindGym({
     query,
     page,
   }: SearchGymsUseCaseRequest): Promise<SearchGymsUseCaseResponse> {

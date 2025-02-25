@@ -22,7 +22,7 @@ describe('Get User Metrics Use Case', () => {
       user_id: 'user-01',
     })
 
-    const { checkInsCount } = await sut.execute({
+    const { checkInsCount } = await sut.tryGetUserMetrics({
       userId: 'user-01',
     })
 

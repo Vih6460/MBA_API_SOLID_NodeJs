@@ -13,7 +13,7 @@ interface FetchUserCheckInsHistoryUseCaseResponse {
 export class FetchUserCheckInsHistoryUseCase {
   constructor(private checkInsRepository: CheckInsRepository) {}
 
-  async execute({
+  async tryFetchUserCheckInsHistory({
     userId,
     page,
   }: FetchUserCheckInsHistoryUseCaseRequest): Promise<FetchUserCheckInsHistoryUseCaseResponse> {

@@ -22,7 +22,7 @@ describe('Fetch User Check-in History Use Case', () => {
       user_id: 'user-01',
     })
 
-    const { checkIns } = await sut.execute({
+    const { checkIns } = await sut.tryFetchUserCheckInsHistory({
       userId: 'user-01',
       page: 1,
     })
@@ -42,7 +42,7 @@ describe('Fetch User Check-in History Use Case', () => {
       })
     }
 
-    const { checkIns } = await sut.execute({
+    const { checkIns } = await sut.tryFetchUserCheckInsHistory({
       userId: 'user-01',
       page: 2,
     })
