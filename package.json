@@ -25,7 +25,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Vih6460/MBA_API_SOLID_NodeJs/issues"
   },
